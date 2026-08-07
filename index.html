@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Password Manager</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath d='M640 874.666667l-85.333333 85.333333h-85.333334l-85.333333-85.333333V448h256v170.666667l-42.666667 42.666666 42.666667 42.666667v42.666667l-42.666667 42.666666 42.666667 42.666667z' fill='%23FFA000'/%3E%3Cpath d='M810.666667 166.4c-10.666667-38.4-42.666667-66.133333-78.933334-76.8C680.533333 78.933333 601.6 64 512 64s-168.533333 14.933333-219.733333 25.6C256 100.266667 224 128 213.333333 166.4c-10.666667 36.266667-21.333333 87.466667-21.333333 142.933333 0 55.466667 10.666667 106.666667 21.333333 142.933334 10.666667 38.4 40.533333 66.133333 78.933334 74.666666 51.2 12.8 130.133333 27.733333 219.733333 27.733334s168.533333-14.933333 219.733333-25.6c38.4-8.533333 68.266667-38.4 78.933334-74.666667s21.333333-87.466667 21.333333-142.933333c0-57.6-10.666667-108.8-21.333333-145.066667zM618.666667 277.333333H405.333333c-23.466667 0-42.666667-19.2-42.666666-42.666666V192c0-12.8 66.133333-21.333333 149.333333-21.333333s149.333333 8.533333 149.333333 21.333333v42.666667c0 23.466667-19.2 42.666667-42.666666 42.666666z' fill='%23FFA000'/%3E%3Cpath d='M490.666667 554.666667h42.666666v405.333333h-42.666666z' fill='%23D68600'/%3E%3C/svg%3E">
     <style>
         :root {
             --bg-color: #f4f6f9;
             --card-bg: #ffffff;
             --text-color: #333333;
+            --text-secondary: #666666;
             --primary: #4a90e2;
             --primary-hover: #357abd;
             --danger: #e74c3c;
@@ -27,6 +30,7 @@
             --bg-color: #121212;
             --card-bg: #1e1e1e;
             --text-color: #e0e0e0;
+            --text-secondary: #a0a0a0;
             --primary: #3b82f6;
             --primary-hover: #2563eb;
             --danger: #ef4444;
@@ -49,6 +53,9 @@
             padding: 15px;
             box-sizing: border-box;
             transition: background-color 0.2s, color 0.2s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .container {
@@ -58,6 +65,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             box-sizing: border-box;
+            flex: 1;
         }
 
         .header-bar {
@@ -320,6 +328,51 @@
             padding: 40px;
             color: #888;
         }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .footer-info {
+            max-width: 850px;
+            line-height: 1.5;
+        }
+
+        .footer-info strong {
+            color: var(--text-color);
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -385,6 +438,20 @@
     </div>
 </div>
 
+<footer>
+    <div class="footer-info">
+        <div><strong id="footerPurposeTitle">Назначение:</strong> <span id="footerPurposeText">Удобный и безопасный просмотр, фильтрация, группировка и редактирование паролей из CSV-файлов прямо в браузере.</span></div>
+    </div>
+    <div class="footer-links">
+        <a href="https://github.com/monkey52x/CSV-Password-Manager" target="_blank" rel="noopener">
+            <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+            GitHub Repository
+        </a>
+    </div>
+</footer>
+
 <script>
     let passwordsData = [];
     let isGrouped = false;
@@ -416,7 +483,9 @@
             thPass: "Пароль",
             thAction: "Действие",
             deleteBtn: "Удалить",
-            emptyState: "Загрузите CSV-файл с паролями."
+            emptyState: "Загрузите CSV-файл с паролями.",
+            footerPurposeTitle: "Назначение:",
+            footerPurposeText: "Удобный и безопасный просмотр, фильтрация, группировка и редактирование паролей из CSV-файлов прямо в браузере."
         },
         en: {
             title: "CSV Password Manager",
@@ -441,7 +510,9 @@
             thPass: "Password",
             thAction: "Action",
             deleteBtn: "Delete",
-            emptyState: "Upload a CSV password file."
+            emptyState: "Upload a CSV password file.",
+            footerPurposeTitle: "Purpose:",
+            footerPurposeText: "Convenient and secure viewing, filtering, grouping, and editing of CSV passwords entirely inside your browser."
         },
         ua: {
             title: "Менеджер Паролів CSV",
@@ -466,7 +537,9 @@
             thPass: "Пароль",
             thAction: "Дія",
             deleteBtn: "Видалити",
-            emptyState: "Завантажте CSV-файл із паролями."
+            emptyState: "Завантажте CSV-файл із паролями.",
+            footerPurposeTitle: "Призначення:",
+            footerPurposeText: "Зручний та безпечний перегляд, фільтрація, групування та редагування паролів із CSV-файлів прямо в браузері."
         }
     };
 
@@ -568,6 +641,10 @@
         document.getElementById('thPass').innerText = t.thPass;
         document.getElementById('thAction').innerText = t.thAction;
         emptyState.innerText = t.emptyState;
+        
+        document.getElementById('footerPurposeTitle').innerText = t.footerPurposeTitle;
+        document.getElementById('footerPurposeText').innerText = t.footerPurposeText;
+
         renderTable();
     }
 
